@@ -1,5 +1,5 @@
 from model.da.db import DataAccess
-from model.entity.customer import Customer
+from model.entity.customer import *
 
 da = DataAccess(Customer)
 
