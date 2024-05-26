@@ -3,6 +3,7 @@ from model.entity import *
 
 class Customer(Base):
     __tablename__ = "customer"
+
     customer_id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(20), nullable=False)
     family = Column(String(20), nullable=False)

@@ -2,6 +2,8 @@ from model.entity import *
 
 class Admin(Base):
     __tablename__ = "admin"
+
+    admin_id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(20), nullable=False)
     family = Column(String(20), nullable=False)
     national_code = Column(String(10), nullable=False)
