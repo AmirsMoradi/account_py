@@ -1,3 +1,5 @@
+from sqlalchemy.orm import backref
+
 from model.entity import *
 
 
@@ -10,10 +12,11 @@ class Transaction(Base):
     description = Column(String(20), nullable=False)
 
     sender_id = Column(Integer, ForeignKey("account.id"))
-    sender = relationship("Account")
+    sender = relationship("Account",foreign_keys=[sender_id])
 
     receiver_id = Column(Integer, ForeignKey("account.id"))
-    receiver = relationship("Account")
+    receiver = relationship("Account",foreign_keys=[receiver_id])
+    #todo -> problem with sender and reciver
 
     def __init__(self, id, card_number, transaction_type, description):
         self.id = id
