@@ -1,6 +1,6 @@
-from model.tools import logging
+# -*- coding: utf-8 -*-
+import logging
 import sys
-
 
 class Logger:
     logging.basicConfig(
@@ -12,11 +12,13 @@ class Logger:
             logging.StreamHandler(sys.stdout)
         ]
     )
-
     @classmethod
     def info(cls, message):
         logging.info(message)
 
+
     @classmethod
     def error(cls, message):
         logging.error(message)
+
+

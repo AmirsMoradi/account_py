@@ -10,6 +10,13 @@ class Validator:
             raise ValueError(message)
 
     @classmethod
+    def family_validator(cls, family, message):
+        if isinstance(family, str) and re.match(r"^[a-zA-Z\s]{2,30}$", family):
+            return family
+        else:
+            raise ValueError(message)
+
+    @classmethod
     def username_validator(cls, username, message):
         if re.match(r"^[\w@!#$%^&*\s]{2,30}$", username):
             return username

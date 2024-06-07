@@ -8,11 +8,13 @@ class Admin(Base):
     family = Column(String(20), nullable=False)
     national_code = Column(String(10), nullable=False)
     email = Column(String(20), nullable=False)
+    role = Column(String(10), nullable=True)
 
-    def __init__(self, name, family, email, national_code, user_name, password):
+    def __init__(self, name, family, email, national_code, user_name, password,role="customer"):
         self.name = name
         self.family = family
         self.email = email
         self.national_code = national_code
         self.user_name = user_name
         self.password = password
+        self.role = role

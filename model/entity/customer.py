@@ -9,6 +9,7 @@ class Customer(Base):
     family = Column(String(20), nullable=False)
     card_number = Column(Integer, nullable=False)
     national_code = Column(String(10), nullable=False)
+    role = Column(String(20), nullable=True)
 
 
 
