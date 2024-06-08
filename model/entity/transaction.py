@@ -11,18 +11,18 @@ class Transaction(Base):
     description = Column(String(20), nullable=False)
 
     sender_id = Column(Integer, ForeignKey("account.id"))
-    sender = relationship("Account", ForeignKey=[sender_id])
+    sender = relationship("Account", foreign_keys=[sender_id], backref=backref("transaction", order_by=id))
 
     receiver_id = Column(Integer, ForeignKey("account.id"))
-    receiver = relationship("Account", ForeignKey=[receiver_id])
+    receiver = relationship("Account", foreign_keys=[receiver_id])
 
-    # todo -> problem with sender and reciver
 
-    def __init__(self, id, card_number, transaction_type, description):
-        self.id = id
+    def __init__(self, card_number, transaction_type,price, description):
+        self.id = None
         self.dateTime = None
         self.transaction_type = transaction_type
         self.card_number = card_number
+        self.price = price
         self.description = description
 
     def get_transaction_type(self):

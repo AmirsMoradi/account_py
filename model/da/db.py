@@ -1,11 +1,15 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine,and_, or_
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy_utils import create_database, database_exists
+from sqlalchemy_utils import create_database, database_exists, drop_database
 from model.entity import *
 
 connection_string = "mysql+pymysql://root:worldprogeramm0420@localhost:3306/mft"
 if not database_exists(connection_string):
     create_database(connection_string)
+else:
+    drop_database(connection_string)
+    create_database(connection_string, )
+
 
 engine = create_engine(connection_string)
 Base.metadata.create_all(engine)

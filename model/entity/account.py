@@ -8,13 +8,10 @@ class Account(Base):
     family = Column(String(20), nullable=False)
     card_number = Column(Integer, nullable=False)
 
-    person_id = Column(Integer, ForeignKey("customer.customer_id"))
-    person = relationship("Customer")
+    customer_id = Column(Integer, ForeignKey("customer.customer_id"))
+    customer = relationship("Customer")
 
-    sender = relationship("Transaction", back_populates="sender")
-    receiver = relationship("Transaction", back_populates="receiver")
-
-    def __init__(self, id, name, family, card_number):
+    def __init__(self, name, family, card_number):
         self.id = None
         self.name = name
         self.family = family

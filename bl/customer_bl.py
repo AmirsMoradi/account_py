@@ -7,8 +7,8 @@ customer_da = DataAccess(Customer)
 
 class CustomerBl:
     @staticmethod
-    def save(customer):
-        return customer_da.save(customer)
+    def save(customer_id):
+        return customer_da.save(customer_id)
 
     @staticmethod
     def edit(customer):
@@ -42,9 +42,20 @@ class CustomerBl:
             raise CustomerNotFoundError()
 
     @staticmethod
+    def find_by_name(name):
+        customer_list = customer_da.find_by(Customer.name == name)
+        if customer_list:
+            return customer_list
+        else:
+            raise CustomerNotFoundError()
+
+    @staticmethod
     def find_by_family(family):
         customer_list = customer_da.find_by(Customer.family == family)
         if customer_list:
             return customer_list
         else:
             raise CustomerNotFoundError()
+
+
+
