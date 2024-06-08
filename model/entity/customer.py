@@ -11,12 +11,12 @@ class Customer(Base):
     national_code = Column(String(10), nullable=False)
     role = Column(String(20), nullable=True)
 
-
-
-
-    def __init__(self, id, name, family, card_number,national_code):
+    def __init__(self, id, name, family, card_number, national_code, user_name, password, role="customer"):
         self.id = None
         self.name = name
         self.family = family
         self.card_number = card_number
         self.national_code = national_code
+        self.user_name = user_name
+        self.password = password
+        self.role = role

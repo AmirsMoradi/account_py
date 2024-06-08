@@ -1,19 +1,13 @@
-class Accountnotfound(Exception):
+class CustomerNotFoundError(Exception):
     def __init__(self):
-        Exception.__init__(self, "customer not found")
+        Exception.__init__(self, "Customer not found")
 
 
-    def Accountnotfound(self):
-        Exception.__init__(self, "account not found")
+class AccountNotFoundError(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Account not found")
 
 
-    def Trancaction(self):
-        Exception.__init__(self, "trancaction not found")
-
-
-
-
-
-
-
-
+class Trancaction(Exception):
+    def __init__(self):
+        Exception.__init__(self, "Trancaction not found")

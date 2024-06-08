@@ -1,5 +1,6 @@
 from model.entity import *
 
+
 class Account(Base):
     __tablename__ = "account"
     id = Column(Integer, primary_key=True, autoincrement=True)
