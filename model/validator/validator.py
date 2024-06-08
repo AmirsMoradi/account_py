@@ -29,3 +29,12 @@ class Validator:
             return password
         else:
             raise ValueError(message)
+
+    @classmethod
+    def national_validator(cls, password, message):
+        if re.match(r"^[\d{3}_\d{7}\s]$", password):
+            return password
+        else:
+            raise ValueError(message)
+
+

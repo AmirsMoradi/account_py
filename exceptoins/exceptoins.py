@@ -8,6 +8,9 @@ class AccountNotFoundError(Exception):
         Exception.__init__(self, "Account not found")
 
 
-class Trancaction(Exception):
+class TrancactionNotFoundError(Exception):
     def __init__(self):
         Exception.__init__(self, "Trancaction not found")
+
+
+

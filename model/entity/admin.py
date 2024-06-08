@@ -10,7 +10,7 @@ class Admin(Base):
     email = Column(String(20), nullable=False)
     role = Column(String(10), nullable=True)
 
-    def __init__(self, name, family, email, national_code, user_name, password,role="customer"):
+    def __init__(self, name, family, email, national_code, user_name, password,role="admin"):
         self.name = name
         self.family = family
         self.email = email
