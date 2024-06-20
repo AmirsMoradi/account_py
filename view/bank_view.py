@@ -6,7 +6,7 @@ class LoginWindow(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Login")
-        self.geometry("300x200")
+        self.geometry("300x250")
         self.create_widgets()
 
     def create_widgets(self):
@@ -18,24 +18,35 @@ class LoginWindow(tk.Tk):
         self.password_entry = tk.Entry(self, show='*')
         self.password_entry.pack(pady=5)
 
+        tk.Label(self, text="Role:").pack(pady=5)
+        self.role_var = tk.StringVar()
+        self.role_menu = tk.OptionMenu(self, self.role_var, "Customer", "Admin")
+        self.role_menu.pack(pady=5)
+
         self.login_button = tk.Button(self, text="Login", command=self.login)
         self.login_button.pack(pady=20)
 
     def login(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
-        #validtion
-        if username == "admin" and password == "admin":
+        role = self.role_var.get()
+        #validation
+        if (username == "admin" and password == "adminpassword" and role == "Admin") or \
+                (username == "customer" and password == "customerpassword" and role == "Customer"):
             self.destroy()
-            app = BankingApp()
+            if role == "Admin":
+                app = BankingApp(admin_access=True)
+            else:
+                app = BankingApp(admin_access=False)
             app.mainloop()
         else:
-            messagebox.showerror("Login Failed", "Invalid username or password")
+            messagebox.showerror("Login Failed", "Invalid username, password, or role")
 
 
 class BankingApp(tk.Tk):
-    def __init__(self):
+    def __init__(self, admin_access):
         super().__init__()
+        self.admin_access = admin_access
         self.title("Banking App")
         self.geometry("400x300")
 
@@ -48,15 +59,18 @@ class BankingApp(tk.Tk):
 
         # Add customer button
         self.add_customer_button = tk.Button(self, text="Add Customer", command=self.add_customer)
-        self.add_customer_button.pack(pady=10)
+        if self.admin_access:
+            self.add_customer_button.pack(pady=10)
 
         # Remove customer button
         self.remove_customer_button = tk.Button(self, text="Remove Customer", command=self.remove_customer)
-        self.remove_customer_button.pack(pady=10)
+        if self.admin_access:
+            self.remove_customer_button.pack(pady=10)
 
         # Admin access button
         self.admin_button = tk.Button(self, text="Admin Access", command=self.admin_access)
-        self.admin_button.pack(pady=10)
+        if self.admin_access:
+            self.admin_button.pack(pady=10)
 
     def transfer_money(self):
         messagebox.showinfo("Transfer Money", "Transfer Money functionality")
@@ -68,8 +82,11 @@ class BankingApp(tk.Tk):
         messagebox.showinfo("Remove Customer", "Remove Customer functionality")
 
     def admin_access(self):
-        admin_window = AdminWindow(self)
-        admin_window.grab_set()
+        if self.admin_access:
+            admin_window = AdminWindow(self)
+            admin_window.grab_set()
+        else:
+            messagebox.showerror("Access Denied", "You do not have admin access")
 
 
 class AdminWindow(tk.Toplevel):

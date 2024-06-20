@@ -31,10 +31,15 @@ class Validator:
             raise ValueError(message)
 
     @classmethod
-    def national_validator(cls,national_id):
-        if re.match(r"^\d{10}$",national_id):
+    def national_validator(cls, national_id, message):
+        if re.match(r"^\d{10}$", national_id):
             return national_id
         else:
-            raise ValueError(national_id)
+            raise ValueError(message)
 
-
+    @classmethod
+    def card_number_validator(cls, card_number, message):
+        if re.match(r"^[4-5]\d{12,15}$", card_number):
+            return card_number
+        else:
+            raise ValueError(message)

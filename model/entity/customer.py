@@ -6,14 +6,14 @@ class Customer(Base):
     __tablename__ = "customer"
 
     customer_id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(20), nullable=False)
-    family = Column(String(20), nullable=False)
-    card_number = Column(Integer, nullable=False)
-    national_code = Column(String(10), nullable=False)
+    _name = Column("name",String(20), nullable=False)
+    _family = Column("family",String(20), nullable=False)
+    _card_number = Column("card_number",Integer, nullable=False)
+    _national_code = Column("national_code",String(10), nullable=False)
     role = Column(String(20), nullable=True)
 
     def __init__(self, name, family, card_number, national_code, user_name, password, role="customer"):
-        self.id = None
+        self.customer_id = None
         self.name = name
         self.family = family
         self.card_number = card_number
@@ -23,28 +23,28 @@ class Customer(Base):
         self.role = role
 
     @property
-    def Name(self):
-        return self.name
+    def name(self):
+        return self._name
 
-    @Name.setter
-    def Name(self, value):
-        if not isinstance(value, str):
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
             raise ValueError("Name must be a string")
-        self.name = value
+        self._name = name
 
     @property
-    def Family(self):
-        return self.name
+    def family(self):
+        return self._family
 
-    @Family.setter
-    def Family(self, value):
-        if not isinstance(value, str):
+    @family.setter
+    def family(self, family):
+        if not isinstance(family, str):
             raise ValueError("Name must be a string")
-        self.name = value
+        self._family = family
 
-    @classmethod
-    def find_by_username(cls, username):
-        pass
 
+    @property
+    def card_number(self):
+        return self._card_number
 
     
