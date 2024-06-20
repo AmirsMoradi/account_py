@@ -32,7 +32,7 @@ class Validator:
 
     @classmethod
     def national_validator(cls, national_id, message):
-        if re.match(r"^\d{10}$", national_id):
+        if re.match(r"^\d{11}$", national_id):
             return national_id
         else:
             raise ValueError(message)

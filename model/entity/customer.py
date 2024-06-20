@@ -1,5 +1,5 @@
-from exceptoins.exceptoins import DuplicateUsernameError
 from model.entity import *
+from model.validator.validator import Validator
 
 
 class Customer(Base):
@@ -28,9 +28,7 @@ class Customer(Base):
 
     @name.setter
     def name(self, name):
-        if not isinstance(name, str):
-            raise ValueError("Name must be a string")
-        self._name = name
+        self._name = Validator.name_validator( name , "Invalid Name")
 
     @property
     def family(self):
@@ -38,13 +36,23 @@ class Customer(Base):
 
     @family.setter
     def family(self, family):
-        if not isinstance(family, str):
-            raise ValueError("Name must be a string")
-        self._family = family
+        self._family = Validator.family_validator( family , "Invalid Family")
 
 
     @property
     def card_number(self):
-        return self._card_number
+       return self._card_number
+
+    @card_number.setter
+    def card_number(self, card_number):
+            self._card_number = Validator.card_number_validator( card_number , "Invalid Card Number")
+
+    @property
+    def national_code(self):
+        return self._national_code
+
+    @national_code.setter
+    def national_code(self, national_code):
+        self._national_code = Validator.national_validator(national_code,"invalid national code")
 
     
